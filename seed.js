@@ -9,9 +9,17 @@ async function seed() {
     console.log(cyan("📡 Connecting to the database..."));
     // Connect to the database
 
+    await db.sync({force: true});
+
     console.log(blue("🌱 Seeding the database..."));
 
     // Seed the database
+    const Asparagus = await Plant.create({name: 'Asparagus'});
+    console.log('Asparagus instance >>>>', Asparagus);
+    console.log('Aparagus name >>>>', Asparagus.name);
+    await Asparagus.update({name: 'Broccoli'});
+    console.log('Updated Asparagus name >>>>', Asparagus.name);
+
 
     // Close the database connection
     await db.close();
